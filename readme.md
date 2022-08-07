@@ -1,12 +1,10 @@
 # Github pages APT repo
 
-This action will setup and manage a simple APT repo on your github pages
+This action will create a single APT repo for a single dpkg file.
+
+Forked from https://github.com/jrandiny/apt-repo-action and all git logic removed
 
 ## Inputs
-
-### `github_token`
-
-**Required** Personal access token with commit and push scope granted.
 
 ### `repo_supported_arch`
 
@@ -36,10 +34,6 @@ GPG public key for APT repo
 
 Passphrase of GPG private key
 
-### `page_branch`
-
-Branch of Github pages. Defaults to `gh-pages`
-
 ### `repo_folder`
 
 Location of APT repo folder relative to root of Github pages. Defaults to `repo`
@@ -49,7 +43,6 @@ Location of APT repo folder relative to root of Github pages. Defaults to `repo`
 ```yaml
 uses: jrandiny/apt-repo-action@v1
 with:
-  github_token: ${{ secrets.PAT }}
   arch: |
     amd64
     i386
