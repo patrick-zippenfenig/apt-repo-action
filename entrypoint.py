@@ -53,17 +53,6 @@ if __name__ == '__main__':
 
     logging.info('-- Done parsing input --')
 
-    # Clone repo
-
-    logging.info('-- Cloning current Github page --')
-
-    github_user = github_repo.split('/')[0]
-    github_slug = github_repo.split('/')[1]
-
-    if os.path.exists(github_slug):
-        shutil.rmtree(github_slug)
-
-    # Generate metadata
     logging.debug("cwd : {}".format(os.getcwd()))
     logging.debug(os.listdir())
 
@@ -82,8 +71,8 @@ if __name__ == '__main__':
     # Prepare key
 
     logging.info('-- Importing key --')
-
-    key_dir = os.path.join(github_slug, 'public.key')
+    apt_dir = apt_folder
+    key_dir = os.path.join(apt_dir, 'public.key')
     gpg = gnupg.GPG()
 
     detectPublicKey(gpg, key_dir, key_public)
@@ -95,7 +84,7 @@ if __name__ == '__main__':
 
     logging.info('-- Preparing repo directory --')
 
-    apt_dir = os.path.join(github_slug, apt_folder)
+    
     apt_conf_dir = os.path.join(apt_dir, 'conf')
 
     if not os.path.isdir(apt_dir):
