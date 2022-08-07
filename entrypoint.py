@@ -68,10 +68,22 @@ if __name__ == '__main__':
 
     logging.info('-- Done cloning current Github page --')
 
+    # Prepare repo
+
+    logging.info('-- Preparing repo directory --')
+
+    apt_dir = apt_folder
+    apt_conf_dir = os.path.join(apt_dir, 'conf')
+
+    if not os.path.isdir(apt_dir):
+        logging.info('Existing repo not detected, creating new repo')
+        os.mkdir(apt_dir)
+        os.mkdir(apt_conf_dir)
+    
+
     # Prepare key
 
     logging.info('-- Importing key --')
-    apt_dir = apt_folder
     key_dir = os.path.join(apt_dir, 'public.key')
     gpg = gnupg.GPG()
 
@@ -80,17 +92,6 @@ if __name__ == '__main__':
 
     logging.info('-- Done importing key --')
 
-    # Prepare repo
-
-    logging.info('-- Preparing repo directory --')
-
-    
-    apt_conf_dir = os.path.join(apt_dir, 'conf')
-
-    if not os.path.isdir(apt_dir):
-        logging.info('Existing repo not detected, creating new repo')
-        os.mkdir(apt_dir)
-        os.mkdir(apt_conf_dir)
 
     logging.debug('Creating repo config')
 
