@@ -2,7 +2,6 @@ import os
 import sys
 import logging
 import gnupg
-import git
 import shutil
 import re
 import json
